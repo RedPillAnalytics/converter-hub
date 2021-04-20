@@ -1,0 +1,10 @@
+micronaut:
+  application:
+    name: converterHub
+  metrics:
+    export:
+      stackdriver:
+        enabled: true
+        projectId: ${STACKDRIVER_PROJECT_ID}
+        step: PT1M
+    enabled: true

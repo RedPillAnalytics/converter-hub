@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.redpillanalytics
+testFramework: spock
+sourceLanguage: groovy
+buildTool: gradle
+features: [annotation-api, app-name, gcp-cloud-trace, gcp-pubsub, gradle, groovy, groovy-application, http-client, jib, management, micrometer, micrometer-stackdriver, netty-server, readme, shade, slf4j-simple, spock, yaml]
