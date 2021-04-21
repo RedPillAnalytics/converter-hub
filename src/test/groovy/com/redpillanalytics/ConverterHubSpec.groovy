@@ -11,7 +11,7 @@ class ConverterHubSpec extends Specification {
     @Inject
     EmbeddedApplication<?> application
 
-    void 'test it works'() {
+    def 'test it works'() {
         expect:
         application.running
     }

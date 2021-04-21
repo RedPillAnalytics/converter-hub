@@ -5,6 +5,12 @@ micronaut:
     export:
       stackdriver:
         enabled: true
-        projectId: ${STACKDRIVER_PROJECT_ID}
+        projectId: rpa-converter
         step: PT1M
     enabled: true
+  server:
+    max-request-size: 2GB
+    multipart:
+      max-file-size: 2GB
+      max-request-size: 100MB
+      enabled: true

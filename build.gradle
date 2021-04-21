@@ -5,7 +5,7 @@ plugins {
     id("com.google.cloud.tools.jib") version "2.6.0"
 }
 
-version = "0.1"
+version = "0.1.0"
 group = "com.redpillanalytics"
 
 repositories {
@@ -38,15 +38,16 @@ dependencies {
 application {
     mainClass.set("com.redpillanalytics.Application")
 }
-java {
-    sourceCompatibility = JavaVersion.toVersion("13")
-    targetCompatibility = JavaVersion.toVersion("13")
-}
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
 
 
 jib {
     to {
-        image = "gcr.io/myapp/jib-image"
+        image = "gcr.io/rpa-converter/converter-hub"
     }
 }
