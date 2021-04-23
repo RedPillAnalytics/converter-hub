@@ -1,5 +1,6 @@
-package com.redpillanalytics
+package com.redpillanalytics.controllers
 
+import com.redpillanalytics.utils.Gcp
 import groovy.util.logging.Slf4j
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Controller
@@ -14,22 +15,27 @@ import static io.micronaut.http.MediaType.TEXT_PLAIN
 
 @Slf4j
 @Controller("/sessions")
-class UploadController {
-
+class PostSessions {
    @Post(value = "/", consumes = MULTIPART_FORM_DATA, produces = TEXT_PLAIN)
    Single<HttpResponse<String>> upload(StreamingFileUpload file) {
 
-      File tempFile = File.createTempFile(file.filename, "temp")
+      File tempFile = File.createTempFile(file.filename,'')
       Publisher<Boolean> uploadPublisher = file.transferTo(tempFile)
-      log.info "File $file uploaded."
+      log.info "File $tempFile created."
+
+      String contextId = UUID.randomUUID().toString()
+
+      Gcp gcp = new Gcp(dataset: contextId)
 
       Single.fromPublisher(uploadPublisher)
               .map({ success ->
                  if (success) {
-                    HttpResponse.ok("Uploaded")
+                    log.info "Size: ${tempFile.size()}"
+                    gcp.uploadFile(tempFile)
+                    HttpResponse.ok("Sessions file posted.")
                  } else {
                     HttpResponse.<String> status(CONFLICT)
-                            .body("Upload Failed")
+                            .body("Sessions post failed.")
                  }
               })
    }

@@ -5,7 +5,7 @@ micronaut:
     export:
       stackdriver:
         enabled: true
-        projectId: rpa-converter
+        projectId: getProjectId()
         step: PT1M
     enabled: true
   server:

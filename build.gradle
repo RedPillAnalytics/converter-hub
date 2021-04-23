@@ -26,11 +26,14 @@ dependencies {
     implementation("io.micronaut:micronaut-management")
     implementation("io.micronaut.groovy:micronaut-runtime-groovy")
     implementation("io.micronaut.micrometer:micronaut-micrometer-core")
-    implementation("io.micronaut.micrometer:micronaut-micrometer-registry-stackdriver")
+    //implementation("io.micronaut.micrometer:micronaut-micrometer-registry-stackdriver")
     implementation("javax.annotation:javax.annotation-api")
     implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut.gcp:micronaut-gcp-common")
     implementation("io.micronaut.gcp:micronaut-gcp-tracing")
     implementation("io.micronaut.gcp:micronaut-gcp-pubsub")
+    implementation 'com.google.cloud:google-cloud-bigquery:1.128.0'
+    implementation 'com.google.cloud:google-cloud-storage:1.113.15'
     runtimeOnly("org.slf4j:slf4j-simple")
 }
 
